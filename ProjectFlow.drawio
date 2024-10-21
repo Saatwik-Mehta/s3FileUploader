@@ -1,0 +1,47 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" version="24.8.0">
+  <diagram name="Page-1" id="X2vntezgop7pZ6BSxuZB">
+    <mxGraphModel dx="530" dy="222" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="7MZolngaxbq-G4plYtWY-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="7MZolngaxbq-G4plYtWY-4" target="7MZolngaxbq-G4plYtWY-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7MZolngaxbq-G4plYtWY-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="7MZolngaxbq-G4plYtWY-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="525" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7MZolngaxbq-G4plYtWY-1" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;" vertex="1" parent="1">
+          <mxGeometry x="321" y="180" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="7MZolngaxbq-G4plYtWY-4" value="&lt;b&gt;&lt;font color=&quot;#ffffff&quot; style=&quot;font-size: 14px;&quot;&gt;The API Gateway will received the events from UI.&lt;/font&gt;&lt;/b&gt;" style="whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#8C4FFF;strokeColor=#ffffff;fontColor=#232F3E;sketch=0;dashed=0;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="300" y="31" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7MZolngaxbq-G4plYtWY-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" target="7MZolngaxbq-G4plYtWY-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="525" y="340" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="525" y="409" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7MZolngaxbq-G4plYtWY-7" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" vertex="1" parent="1">
+          <mxGeometry x="321" y="370" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="7MZolngaxbq-G4plYtWY-9" value="The Event will be passed on to the Lambda function which will process it." style="whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#ED7100;strokeColor=#ffffff;fontColor=#232F3E;sketch=0;dashed=0;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="470" y="270" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="7MZolngaxbq-G4plYtWY-12" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="321" y="580" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="7MZolngaxbq-G4plYtWY-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="7MZolngaxbq-G4plYtWY-12" target="7MZolngaxbq-G4plYtWY-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7MZolngaxbq-G4plYtWY-14" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;S3 createObject API&lt;/font&gt;&lt;/h1&gt;&lt;div&gt;Lambda function will call this API and use it to store the data in the S3 bucket of the user.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;S3 bucket will have to give the permission to the Lambda to make this possible.&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="410" y="440" width="195" height="170" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,56 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: saatwik
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: s3fileuploader
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: S3FileUploader
+
+provider:
+  name: aws
+  stage: dev
+  runtime: python3.12
+  region: ap-south-1
+  stackName: file-uploader-app-${self:provider.region}
+
+package:
+  individually: true 
+  
+functions:
+  s3_doc_uploader:
+    handler: handler.s3_doc_uploader
+    description: This function will process and upload the file to the S3 bucket
+    package: 
+      patterns:
+        - '!./**'
+        - handler.py
+    events:
+      - http:
+          path: /
+          method: POST
+          cors: true
+
+resources:
+  Resources:
+      fileUploaderBucket:
+        Type: AWS::S3::Bucket
+        Properties: 
+          BucketName: s3fileuploader-file-uploader-${self:provider.stage}
+          PublicAccessBlockConfiguration: 
+            BlockPublicPolicy: false
+      legalDocAnalyserBucketS3BucketPolicy:
+        Type: AWS::S3::BucketPolicy
+        Properties:
+          Bucket: ${self:resources.Resources.fileUploaderBucket.Properties.BucketName}
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement: 
+              - Effect: Allow
+                Principal: "*"
+                Action: "s3:PutObject"
+                Resource: !Join
+                          - ''
+                          - - 'arn:aws:s3:::'
+                            - !Ref fileUploaderBucket
+                            - '/*'
+                
+              

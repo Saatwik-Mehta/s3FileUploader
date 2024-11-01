@@ -25,7 +25,19 @@ functions:
         - handler.py
     events:
       - http:
-          path: /
+          path: /uploadfile
+          method: PUT
+          cors: true
+  s3_presigned_url_for_uploader:
+    handler: handler.s3_presigned_url
+    description: This function will generate the presigned url to upload the file provided by the end user to the  application
+    package: 
+      patterns:
+        - '!./**'
+        - handler.py
+    events:
+      - http:
+          path: /presignedurl
           method: POST
           cors: true
 

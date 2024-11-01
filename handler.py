@@ -12,6 +12,13 @@ REGION = os.getenv("REGION")
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
 
+
+def lambda_handler(event, context):
+    if event["path"] == "/presignedurl":
+        return s3_presigned_url(event, context)
+    elif event["path"] == "/uploadfile":
+        return s3_doc_uploader(event, context)
+
 def s3_doc_uploader(event, context):
     LOGGER.info(f"event received: {event}")
     file_name = event.get("file_name")

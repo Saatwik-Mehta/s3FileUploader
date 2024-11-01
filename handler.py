@@ -59,5 +59,6 @@ def create_presigned_url(bucket_name, object_name, expiration=3600):
 
 def s3_presigned_url(event, context):
     LOGGER.info(f"event received: {event}")
-    presigned_url = create_presigned_url(bucket_name=S3_BUCKET, object_name=event["file_name"])
+    body=json.loads(event["body"])
+    presigned_url = create_presigned_url(bucket_name=S3_BUCKET, object_name=body["file_name"])
     return request_successful(presigned_url)

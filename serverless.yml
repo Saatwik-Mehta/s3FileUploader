@@ -17,7 +17,7 @@ package:
   
 functions:
   s3_doc_uploader:
-    handler: handler.s3_doc_uploader
+    handler: handler.lambda_handler
     description: This function will process and upload the file to the S3 bucket
     package: 
       patterns:

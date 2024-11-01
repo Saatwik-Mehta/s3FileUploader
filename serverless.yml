@@ -23,6 +23,7 @@ functions:
       patterns:
         - '!./**'
         - handler.py
+        - common.py
     events:
       - http:
           path: /uploadfile

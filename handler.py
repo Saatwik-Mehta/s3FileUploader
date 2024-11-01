@@ -12,6 +12,13 @@ REGION = os.getenv("REGION")
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
 
+
+def lambda_handler(event, context):
+    if event["path"] == "/presignedurl":
+        return s3_presigned_url(event, context)
+    elif event["path"] == "/uploadfile":
+        return s3_doc_uploader(event, context)
+
 def s3_doc_uploader(event, context):
     LOGGER.info(f"event received: {event}")
     file_name = event.get("file_name")
@@ -52,5 +59,6 @@ def create_presigned_url(bucket_name, object_name, expiration=3600):
 
 def s3_presigned_url(event, context):
     LOGGER.info(f"event received: {event}")
-    presigned_url = create_presigned_url(bucket_name=S3_BUCKET, object_name=event["file_name"])
+    body=json.loads(event["body"])
+    presigned_url = create_presigned_url(bucket_name=S3_BUCKET, object_name=body["file_name"])
     return request_successful(presigned_url)

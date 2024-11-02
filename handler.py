@@ -1,4 +1,5 @@
 import json
+import requests
 import os
 import boto3
 from botocore.exceptions import ClientError
@@ -16,24 +17,33 @@ LOGGER.setLevel(logging.INFO)
 def lambda_handler(event, context):
     if event["path"] == "/presignedurl":
         return s3_presigned_url(event, context)
-    elif event["path"] == "/uploadfile":
-        return s3_doc_uploader(event, context)
+    # elif event["path"] == "/uploadfile":
+    #     return s3_doc_uploader(event, context)
 
-def s3_doc_uploader(event, context):
+# # PUT /uploadfile
+# def s3_doc_uploader(event, context):
+#     """
+#     event contains two parameters: 
+#     - content: content of the file
+#     - presigned_url: url generated to upload the data
+#     """
+#     LOGGER.info(f"event received: {event}")
+    
+#     try:
+#         response = requests.put()
+#     except ClientError as e:
+#         LOGGER.error(e)
+#         return e
+#     else:
+#         LOGGER.info(response)
+#         return request_successful(message="File upload successful")
+
+# POST /presignedurl
+def s3_presigned_url(event, context):
     LOGGER.info(f"event received: {event}")
-    file_name = event.get("file_name")
-    s3_bucket = event.get("s3_bucket")
-    key = event.get("object_name")
-    if key is None:
-        key = os.path.basename(file_name)
-    try:
-        response = client.upload_file(file_name, s3_bucket, key)
-    except ClientError as e:
-        LOGGER.error(e)
-        return e
-    else:
-        LOGGER.info(response)
-        return request_successful(message="File upload successful")
+    body=json.loads(event["body"])
+    presigned_url = create_presigned_url(bucket_name=S3_BUCKET, object_name=body["file_name"])
+    return request_successful(presigned_url)
 
 def create_presigned_url(bucket_name, object_name, expiration=3600):
     """Generate a presigned URL to share an S3 object
@@ -56,9 +66,3 @@ def create_presigned_url(bucket_name, object_name, expiration=3600):
 
     # The response contains the presigned URL
     return response
-
-def s3_presigned_url(event, context):
-    LOGGER.info(f"event received: {event}")
-    body=json.loads(event["body"])
-    presigned_url = create_presigned_url(bucket_name=S3_BUCKET, object_name=body["file_name"])
-    return request_successful(presigned_url)

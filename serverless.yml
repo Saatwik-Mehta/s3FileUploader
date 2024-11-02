@@ -25,10 +25,10 @@ functions:
         - handler.py
         - common.py
     events:
-      - http:
-          path: /uploadfile
-          method: PUT
-          cors: true
+    #   - http:
+    #       path: /uploadfile
+    #       method: PUT
+    #       cors: true
       - http:
           path: /presignedurl
           method: POST

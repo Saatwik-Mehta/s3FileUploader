@@ -1,13 +1,13 @@
 import json
-import requests
 import os
 import boto3
 from botocore.exceptions import ClientError
+from botocore.client import Config
 import logging
 
 from common import request_successful
-client = boto3.client('s3')
-S3_BUCKET = os.getenv("s3_bucket")
+client = boto3.client('s3', config=Config(signature_version='s3v4'))
+S3_BUCKET = os.getenv("FILE_BUCKET")
 REGION = os.getenv("REGION")
 
 LOGGER = logging.getLogger(__name__)
@@ -17,26 +17,6 @@ LOGGER.setLevel(logging.INFO)
 def lambda_handler(event, context):
     if event["path"] == "/presignedurl":
         return s3_presigned_url(event, context)
-    # elif event["path"] == "/uploadfile":
-    #     return s3_doc_uploader(event, context)
-
-# # PUT /uploadfile
-# def s3_doc_uploader(event, context):
-#     """
-#     event contains two parameters: 
-#     - content: content of the file
-#     - presigned_url: url generated to upload the data
-#     """
-#     LOGGER.info(f"event received: {event}")
-    
-#     try:
-#         response = requests.put()
-#     except ClientError as e:
-#         LOGGER.error(e)
-#         return e
-#     else:
-#         LOGGER.info(response)
-#         return request_successful(message="File upload successful")
 
 # POST /presignedurl
 def s3_presigned_url(event, context):
@@ -56,7 +36,7 @@ def create_presigned_url(bucket_name, object_name, expiration=3600):
 
     # Generate a presigned URL for the S3 object
     try:
-        response = client.generate_presigned_url('get_object',
+        response = client.generate_presigned_url('put_object',
                                                     Params={'Bucket': bucket_name,
                                                             'Key': object_name},
                                                     ExpiresIn=expiration)

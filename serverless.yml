@@ -1,8 +1,4 @@
-# "org" ensures this Service is used with the correct Serverless Framework Access Key.
 org: saatwik
-# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
-app: s3fileuploader
-# "service" is the name of this project. This will also be added to your AWS resource names.
 service: S3FileUploader
 
 provider:
@@ -17,38 +13,48 @@ package:
   
 functions:
   s3_doc_uploader:
-    handler: handler.s3_doc_uploader
+    handler: handler.lambda_handler
     description: This function will process and upload the file to the S3 bucket
     package: 
       patterns:
         - '!./**'
         - handler.py
+        - common.py
     events:
-      - http:
-          path: /uploadfile
-          method: PUT
-          cors: true
-  s3_presigned_url_for_uploader:
-    handler: handler.s3_presigned_url
-    description: This function will generate the presigned url to upload the file provided by the end user to the  application
-    package: 
-      patterns:
-        - '!./**'
-        - handler.py
-    events:
+    #   - http:
+    #       path: /uploadfile
+    #       method: PUT
+    #       cors: true
       - http:
           path: /presignedurl
           method: POST
           cors: true
+    environment:
+      FILE_BUCKET: ${self:resources.Resources.fileUploaderBucket.Properties.BucketName}
 
 resources:
   Resources:
       fileUploaderBucket:
         Type: AWS::S3::Bucket
         Properties: 
-          BucketName: s3fileuploader-file-uploader-${self:provider.stage}
+          BucketName: s3file-uploader-file-uploader-${self:provider.stage}
+          OwnershipControls: 
+            Rules:
+            - ObjectOwnership: ObjectWriter
           PublicAccessBlockConfiguration: 
             BlockPublicPolicy: false
+          CorsConfiguration:
+            CorsRules:
+              - AllowedHeaders:
+                  - "*"
+                AllowedMethods:
+                  - PUT
+                  - GET
+                  - HEAD
+                AllowedOrigins:
+                  - "*"
+                MaxAgeSeconds: 3600
+
       legalDocAnalyserBucketS3BucketPolicy:
         Type: AWS::S3::BucketPolicy
         Properties:

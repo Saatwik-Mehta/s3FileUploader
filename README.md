@@ -15,3 +15,7 @@ authorAvatar: 'https://avatars.githubusercontent.com/u/80687021?v=4'
 Building A full AWS serverless based Backend for **Simple File Uploader**. Services used are `APIGateway` to manage the actual API, `Lambda Function` to support the REST api and `S3` to store the File in an S3 Bucket.
 
 This app serves as a Simple File Uploader where we learn about serverless functionality of AWS. This app further can be extended for more apps, one such example is a simple resume uploader, PDF editor or infact Legal Document uploader.
+
+Functionality:
+- You generate a presigned_url by providing a fileName using POST method as input, it will return a presigned URL.
+- Use presignedURL with PUT method to upload the file to S3 bucket.

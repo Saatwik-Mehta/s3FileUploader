@@ -19,3 +19,17 @@ This app serves as a Simple File Uploader where we learn about serverless functi
 Functionality:
 - You generate a presigned_url by providing a fileName using POST method as input, it will return a presigned URL.
 - Use presignedURL with PUT method to upload the file to S3 bucket.
+
+<br>
+
+# How to Run
+
+- clone the project in your local
+- Run `SLS DEPLOY` to deploy the project in your aws account
+- Once the Rest API endpoint is provided, start using it.
+
+
+# How to use the API
+
+- The provided api required the payload - `{"file_name":"your_image.ext"}`, once given it will return a presigned URL
+- This presigned URL will be called with the **PUT** method to upload the image to S3 bucket.

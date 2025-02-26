@@ -52,7 +52,7 @@ resources:
                   - HEAD
                 AllowedOrigins:
                   - "*"
-                MaxAgeSeconds: 3600
+                MaxAgeSeconds: 3000
 
       legalDocAnalyserBucketS3BucketPolicy:
         Type: AWS::S3::BucketPolicy

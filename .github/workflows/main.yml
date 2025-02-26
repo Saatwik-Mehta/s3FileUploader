@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
-      - run: python --version
+      - run: npm install
       - name: serverless deploy
         uses: serverless/github-action@v4
         with:

@@ -1,5 +1,8 @@
 org: saatwik
-service: S3FileUploader
+app: serverless-app
+service: s3-file-uploader
+
+frameworkVersion: '4'
 
 provider:
   name: aws
@@ -10,7 +13,7 @@ provider:
 
 package:
   individually: true 
-  
+
 functions:
   s3_doc_uploader:
     handler: handler.lambda_handler
@@ -21,10 +24,6 @@ functions:
         - handler.py
         - common.py
     events:
-    #   - http:
-    #       path: /uploadfile
-    #       method: PUT
-    #       cors: true
       - http:
           path: /presignedurl
           method: POST
@@ -71,4 +70,5 @@ resources:
                             - !Ref fileUploaderBucket
                             - '/*'
                 
-              
+plugins:
+  - serverless-python-requirements
